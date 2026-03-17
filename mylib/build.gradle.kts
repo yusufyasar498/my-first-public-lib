@@ -24,22 +24,28 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
     }
 }
 
-publishing {
-    publications {
-        register<MavenPublication>("release") {
-            afterEvaluate {
+// Publishing bloğunu afterEvaluate içine alarak 'release' bulunamadı hatasını çözüyoruz
+afterEvaluate {
+    publishing {
+        publications {
+            register<MavenPublication>("release") {
                 from(components["release"])
-            }
 
-            // JitPack için bu kısımlar kritik:
-            groupId = "com.github.KULLANICI_ADIN" // GitHub kullanıcı adın (küçük harf önerilir)
-            artifactId = "repo-adin"               // GitHub'daki proje (repository) adın
-            version = "1.0.0"                      // Versiyon numaran
+                groupId = "com.github.yusufyasar498"
+                artifactId = "my-first-public-lib"
+                version = "1.0.0"
+            }
         }
     }
 }
@@ -48,6 +54,8 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.androidx.fragment.ktx)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
