@@ -20,5 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "MyJitpackLib"
-include(":app")
 include(":mylib")
