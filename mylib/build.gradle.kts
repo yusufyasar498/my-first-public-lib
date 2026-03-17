@@ -44,7 +44,7 @@ afterEvaluate {
 
                 groupId = "com.github.yusufyasar498"
                 artifactId = "my-first-public-lib"
-                version = "1.0.1"
+                version = "1.0.2"
             }
         }
     }
